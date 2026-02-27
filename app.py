@@ -16,19 +16,17 @@ def wordfind():
         defresults.config(text = data[0]["meanings"][0]["definitions"][-1]["definition"])
 
 def thesfind():
+    thesresultsan = []
+    thesresultssyn = []
     word = wordentry.get()
     response = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{word.lower()}")
     if response.status_code != 200:
         defresults.config(text="Error fetching data! ")
     data = response.json()
-    thesresultsan = []
-    thesresultssyn = []
-    print(data[0]["meanings"][0]["synonyms"])
-    thesresultssyn.extend(data[0]["meanings"]["synonyms"][0])
-    thesresultsan.extend(data[0]["meanings"]["antonyms"][0])
+    thesresultssyn.extend(data[0]["meanings"][0]["synonyms"])
+    thesresultsan.extend(data[0]["meanings"][0]["antonyms"])
     print(thesresultsan)
     print(thesresultssyn)
-    print(len(data[0]["meanings"]))
     if len(thesresultsan) > 0 and len(thesresultssyn) >0:
         theslist.config(text=f"The synonyms of {word} are: {", ".join(thesresultssyn)}. The antonyms are {", ".join(thesresultsan)}.")
     elif len(thesresultsan) > 0 and len(thesresultssyn) == 0:
