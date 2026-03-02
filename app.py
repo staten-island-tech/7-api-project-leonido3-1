@@ -8,12 +8,7 @@ def wordfind():
         defresults.config(text="Error fetching data! ")
         return 
     data = response.json()
-    if len(data[0]["meanings"]) > 1:
-        defresults.config(text = data[0]["meanings"][1]["definitions"][0]["definition"])
-    elif len(data[0]["meanings"][0]["definitions"]) > 1:
-        defresults.config(text = data[0]["meanings"][0]["definitions"][0]["definition"])
-    else:
-        defresults.config(text = data[0]["meanings"][0]["definitions"][-1]["definition"])
+    defresults.config(text = data[0]["meanings"][0]["definitions"][0]["definition"])
 
 def thesfind():
     thesresultsan = []
