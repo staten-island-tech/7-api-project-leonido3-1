@@ -20,8 +20,6 @@ def thesfind():
     data = response.json()
     thesresultssyn.extend(data[0]["meanings"][0]["synonyms"])
     thesresultsan.extend(data[0]["meanings"][0]["antonyms"])
-    print(thesresultsan)
-    print(thesresultssyn)
     if len(thesresultsan) > 0 and len(thesresultssyn) >0:
         theslist.config(text=f"The synonyms of {word} are: {", ".join(thesresultssyn)}. The antonyms are {", ".join(thesresultsan)}.")
     elif len(thesresultsan) > 0 and len(thesresultssyn) == 0:
